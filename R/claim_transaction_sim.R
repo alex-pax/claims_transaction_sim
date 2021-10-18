@@ -151,6 +151,7 @@ test_df <- tibble::tibble(acc_year = 2010:2020,
 
 ## Simulate transaction-level claim payments for
 ## 2010 - 2020.
+set.seed(1209)
 test_df <- test_df %>%
   mutate(claim_activity = purrr::map2(acc_year, claim_count,
                                       gen_ay_activity)) %>%
@@ -202,3 +203,7 @@ test_df %>%
   geom_line()
   
 
+## output test_df to .csv
+write.csv(test_df,
+          file = "data/sample_transactions.csv",
+          row.names = FALSE)
